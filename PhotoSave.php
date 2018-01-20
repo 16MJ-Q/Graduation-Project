@@ -2,15 +2,15 @@
 include('conn.php');
 session_start();
 $uID=$_SESSION['uID'];
-$allowedExts = array("gif", "jpeg", "jpg", "png");
-$temp = explode(".", $_FILES["file"]["name"]);
-$extension = end($temp);
-if ((($_FILES["file"]["type"] == "image/gif")
-|| ($_FILES["file"]["type"] == "image/jpeg")
-|| ($_FILES["file"]["type"] == "image/jpg")
-|| ($_FILES["file"]["type"] == "image/pjpeg")
-|| ($_FILES["file"]["type"] == "image/x-png")
-|| ($_FILES["file"]["type"] == "image/png"))
+$allowedExts=array("gif", "jpeg", "jpg", "png");
+$temp=explode(".", $_FILES["file"]["name"]);
+$extension=end($temp);
+if ((($_FILES["file"]["type"]=="image/gif")
+|| ($_FILES["file"]["type"]=="image/jpeg")
+|| ($_FILES["file"]["type"]=="image/jpg")
+|| ($_FILES["file"]["type"]=="image/pjpeg")
+|| ($_FILES["file"]["type"]=="image/x-png")
+|| ($_FILES["file"]["type"]=="image/png"))
 && ($_FILES["file"]["size"] < 5024000)
 && in_array($extension, $allowedExts)){
 if ($_FILES["file"]["error"] > 0){
@@ -25,12 +25,10 @@ if (file_exists("uploadimg/" . $_FILES["file"]["name"])){
 	move_uploaded_file($_FILES["file"]["tmp_name"],"uploadimg/" . $_FILES["file"]["name"]);
 	$photo="uploadimg/" . $_FILES["file"]["name"];
 	$sql=mysql_query("UPDATE user SET photo='$photo' WHERE uID='$uID'");
-	echo "<script>alert('头像已上传');location.href='http://localhost:8080/graduationproject/mbody.php?uID=$uID'</script>";
+	echo "<script>alert('头像已上传');location.href=''</script>";
 	}
 }
 else{
 	echo "头像上传错误";
 }
-
 ?>
-
