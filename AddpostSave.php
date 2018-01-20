@@ -16,7 +16,7 @@ $sql="INSERT INTO post(ptitle,text,addtime,user,fID)VALUES('$title','$text',now(
 $sql2="UPDATE forum SET allpost=allpost+'1' WHERE fID = '$fID'"; 
 $result=mysql_query($sql2);
 if(mysql_query($sql,$conn)){
-	echo "<script>alert('发帖成功');location.href='http://localhost:8080/graduationproject/forum.php'</script>";
+	echo "<script>alert('发帖成功');location.href=''</script>";
 } else {
 	echo '抱歉！添加数据失败：',mysql_error(),'<br />';
 	echo '点击此处 <a href="javascript:history.back(-1);">返回</a> 重试';
