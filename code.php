@@ -1,0 +1,21 @@
+<?php
+session_start();
+Header("Content-type: image/PNG");
+$_SESSION['thisimagecode']="";
+$im=imagecreate(62,20);
+//设定颜色
+$red=imagecolorallocate($im,255,0,0); 
+$blue=imagecolorallocate($im,220,250,230);
+imagefill($im,0,0,$blue); 
+//将四位整数验证码绘入图片
+while(($thisimagecode=rand()%10000)<1000);
+$_SESSION['thisimagecode']=$thisimagecode;
+imagestring($im,5,10,3,$thisimagecode,$red);
+//加入干扰像素
+for($i=0;$i<200;$i++){
+$randcolor=imagecolorallocate($im,rand(0,255),rand(0,255),rand(0,255));
+imagesetpixel($im,rand()%70,rand()%30,$randcolor);
+}
+imagepng($im);
+imagedestroy($im);
+?>
